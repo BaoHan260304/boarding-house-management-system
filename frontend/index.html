@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BHMS - Billing & Maintenance</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">BHMS</div>
+      <nav class="nav">
+        <a href="#" class="nav-link">Rooms</a>
+        <a href="#" class="nav-link">Tenants</a>
+        <a href="#" class="nav-link active">Billing & Maintenance</a>
+      </nav>
+    </header>
+    
+    <main class="container">
+      <h1>Billing & Maintenance Module</h1>
+      <p style="color: var(--text-muted); margin-bottom: 2rem;">UC 05, 06, 07, 08, 10, 17 - Implemented by Member 1 (Quan)</p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        
+        <!-- STAFF SECTION -->
+        <div class="card">
+          <h2 style="color: var(--primary);">Staff: Input Billing Info (UC 08)</h2>
+          <form id="create-bill-form" class="form mt-4" style="flex-direction: column;">
+            <input type="number" id="bill-roomId" placeholder="Room ID (e.g. 1)" required />
+            <input type="month" id="bill-month" required />
+            <input type="number" id="bill-electricity" placeholder="Electricity Amount ($)" required />
+            <input type="number" id="bill-water" placeholder="Water Amount ($)" required />
+            <input type="number" id="bill-rent" placeholder="Room Rent Amount ($)" required />
+            <button type="submit" class="btn btn-primary">Generate Monthly Bill</button>
+          </form>
+        </div>
+
+        <!-- TENANT SECTION: Maintenance -->
+        <div class="card">
+          <h2 style="color: var(--warning);">Tenant: Submit Maintenance (UC 07)</h2>
+          <form id="create-maintenance-form" class="form mt-4" style="flex-direction: column;">
+            <input type="number" id="maint-roomId" placeholder="Your Room ID" required />
+            <textarea id="maint-desc" placeholder="Describe the issue (e.g. Broken pipe in bathroom)" rows="4" style="padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; font-family: inherit;" required></textarea>
+            <button type="submit" class="btn btn-warning">Submit Request</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="card mt-4">
+        <h2>Tenant: View & Pay Utility Bills (UC 05, 06)</h2>
+        <div id="bills-container" class="grid-container mt-4">
+          <!-- Bills will be injected here -->
+        </div>
+      </div>
+      
+      <div class="card mt-4">
+        <h2>Maintenance Requests Log</h2>
+        <div id="maintenance-container" style="margin-top: 1rem;">
+          <!-- Maintenance requests will be injected here -->
+        </div>
+      </div>
+
+    </main>
+    <script type="module" src="/src/modules/quan/quan_module.js"></script>
+  </body>
+</html>
