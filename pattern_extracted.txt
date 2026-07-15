@@ -1,0 +1,171 @@
+Assignment: Design Pattern Analysis and Application in Software Projects
+Mục tiêu
+Sau assignment này sinh viên phải:
+Phân biệt được các nhóm Design Pattern. 
+Nhận diện các vấn đề thiết kế trong hệ thống. 
+Giải thích được khi nào nên hoặc không nên dùng pattern. 
+Áp dụng pattern vào chính sản phẩm của nhóm. 
+Minh họa bằng UML và code thực tế. 
+Yêu cầu chung cho tất cả các nhóm
+Mỗi nhóm chuẩn bị:
+Phần 1. Tổng quan Pattern (10%)
+Trình bày ngắn gọn:
+Design Pattern là gì? 
+Mục đích của Pattern. 
+Các thành phần: 
+Intent 
+Problem 
+Solution 
+Consequences 
+Phần 2. Phân tích và phân biệt Pattern (40%)
+Với mỗi pattern được giao:
+1. Design Problem
+Trả lời:
+Vấn đề thiết kế nào dẫn đến sự ra đời của pattern? 
+Nếu không dùng pattern thì hệ thống gặp khó khăn gì? 
+2. Cấu trúc Pattern
+Trình bày:
+Class Diagram 
+Sequence Diagram 
+3. So sánh với các Pattern dễ nhầm lẫn
+Ví dụ:
+Pattern
+So sánh với
+Factory Method
+Abstract Factory
+Builder
+Factory Method
+Adapter
+Facade
+Bridge
+Strategy
+Composite
+Decorator
+Proxy
+Facade
+State
+Strategy
+Mediator
+Observer
+Phải giải thích:
+Điểm giống nhau. 
+Điểm khác nhau. 
+Trường hợp sử dụng. 
+Phần 3.
+ Á
+p dụng vào sản phẩm nhóm (30%)
+Nhóm phải lựa chọn:
+Tối thiểu 2 pattern
+để áp dụng vào sản phẩm đồ án của nhóm.
+Mỗi pattern cần trình bày:
+Hiện trạng
+Thiết kế ban đầu:
+Class nào đang có vấn đề? 
+Vấn đề mở rộng? 
+Vấn đề coupling? 
+Thiết kế sau khi áp dụng Pattern
+Trình bày:
+Before Design 
+After Design 
+Bằng UML.
+Lợi ích đạt được
+Ví dụ:
+Giảm coupling. 
+Tăng cohesion. 
+Hỗ trợ Open-Closed Principle. 
+Dễ bảo trì. 
+Phần 4. Demo Code (20%)
+Mỗi pattern cần có:
+Demo độc lập
+Ví dụ Java:
+public interface PaymentStrategy {
+    void pay(double amount);
+}
+Demo trong sản phẩm nhóm
+Ví dụ:
+Payment Strategy trong hệ thống bán hàng. 
+Observer trong notification. 
+Builder trong report generation. 
+Command trong workflow. 
+Code phải giải thích:
+Vai trò từng class. 
+Luồng thực thi. 
+Phân công 6 nhóm
+Nhóm 1: Creational Patterns cơ bản
+Pattern
+Singleton 
+Factory Method 
+Abstract Factory 
+Cần phân biệt
+Singleton vs Static Class 
+Factory Method vs Abstract Factory 
+Áp dụng vào sản phẩm
+Ví dụ:
+Service Factory 
+Database Connection Manager 
+Notification Factory 
+Nhóm 2: Creational Patterns nâng cao
+Pattern
+Builder 
+Prototype 
+Cần phân biệt
+Builder vs Factory Method 
+Prototype vs Clone thông thường 
+Áp dụng vào sản phẩm
+Ví dụ:
+Report Builder 
+User Profile Builder 
+Form Template Prototype 
+Nhóm 3: Structural Patterns cơ bản
+Pattern
+Adapter 
+Bridge 
+Facade 
+Cần phân biệt
+Adapter vs Facade 
+Bridge vs Strategy 
+Áp dụng vào sản phẩm
+Ví dụ:
+Payment Gateway Adapter 
+External API Adapter 
+Service Facade 
+Nhóm 4: Structural Patterns nâng cao
+Pattern
+Composite 
+Decorator 
+Proxy 
+Cần phân biệt
+Composite vs Decorator 
+Proxy vs Facade 
+Áp dụng vào sản phẩm
+Ví dụ:
+Category Tree 
+Logging Decorator 
+Security Proxy 
+Nhóm 5: Behavioral Patterns cơ bản
+Pattern
+Observer 
+Strategy 
+State 
+Cần phân biệt
+State vs Strategy 
+Observer vs Event Listener 
+Áp dụng vào sản phẩm
+Ví dụ:
+Notification System 
+Payment Strategy 
+Order State Management 
+Nhóm 6: Behavioral Patterns nâng cao
+Pattern
+Command 
+Mediator 
+Chain of Responsibility 
+Cần phân biệt
+Command vs Strategy 
+Mediator vs Observer 
+Chain of Responsibility vs Pipeline 
+Áp dụng vào sản phẩm
+Ví dụ:
+Undo/Redo 
+Chat Room 
+Authentication Middleware 

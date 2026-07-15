@@ -1,0 +1,725 @@
+COURSE PROJECT REPORT
+Subject: SWD392
+GROUP 2
+– Hanoi, May 2026 –
+Table of Contents
+Record of Changes
+3
+I. Overview
+4
+I.1 Project Information
+4
+I.2 Project Team
+4
+II. Requirement Specification
+4
+II.1 Problem description
+4
+II.2 Major Features
+4
+II.3 Context Diagram
+4
+II.4 Nonfunctional requirements
+5
+II.5 Functional requirements
+5
+II.5.1 Actors
+5
+II.5.2 Use Cases
+5
+II.5.2 .1 Diagram(s)
+5
+II.5.2.2 Use case descriptions
+6
+II.5.3 Activity diagrams
+8
+III. Analysis models.
+10
+III.1. High-level class diagram (structural models)
+10
+III.2 Interaction diagrams
+10
+III.2 State diagrams
+11
+IV. Design specification
+11
+IV.1 Integrated Communication Diagrams
+11
+IV.2 System High-Level Design
+12
+IV.3 Component and Package Diagram
+12
+IV.3.1 Component Diagram
+12
+IV.3.1 . Package Diagram
+13
+IV.4 Class diagram
+14
+IV.5 Database Design
+14
+V. Implementation
+14
+V.1 Map architecture to the structure of the project
+14
+V.2 Map Class Diagram and Interaction Diagram to Code
+14
+VI. Applying Alternative Architecture Patterns
+14
+VI.1 Applying the ………….. (ex: Service-Oriented Architecture (SOA))  architecture
+14
+VI.2 Applying Service Discovery Pattern in the service-oriented architecture
+15
+Record of Changes
+Date
+A*
+M, D
+In charge
+Change Description
+20/05/2026
+A
+I-II.3
+Write discription, context diagram
+*A - Added M - Modified D - Deleted
+I. Overview
+I.1 Project Information
+Project name: 
+Boarding House Management System
+Project code: 
+Group name: SWD392-G
+2
+Software type: Web, 
+web
+ App
+I.2 Project Team
+Full Name
+Role
+Email
+  Mobile
+Nguyen Thi Hanh
+ Lecturer
+hanhnt84@fe.edu.vn
+0975627716
+Duong Anh Dung
+ Leader
+dungdahe176761@fpt.edu.vn
+0342755658
+Nguyen Manh Quan
+ Member
+quannmhe182433@fpt.edu.vn
+0945971511
+Ta Tuong Muoi
+ Member
+muoitthe182380@fpt.edu.vn
+0904645462
+Le Hoai Nam
+ Member
+namlhhe186671@fpt.edu.vn
+0983501198
+Nguyen Hai Dang
+ Member
+dangnhhe186696@fpt.edu.vn
+0942346506
+II. Requirement Specification
+II.1 Problem description
+The Boarding House Management System is a software solution designed to support landlords and staff in managing boarding houses, tenants, rooms, rental contracts, and related services more effectively. Traditional boarding house management methods often rely on manual paperwork, phone calls, and spreadsheets, which can lead to data inconsistency, delayed communication, and difficulties in tracking rental information and payments.
+This system aims to digitalize and automate the management process by providing centralized features for room management, tenant management, contract handling, payment tracking, maintenance requests, and report generation. The system also improves communication between landlords, staff, and tenants through notifications and service updates.
+The context diagram illustrates the interaction between the Boarding House Management System and external entities including Landlord, Staff, Tenant, and Bank/E-Wallet services. Landlords can manage room information, rental requests, occupancy reports, and revenue reports. Staff members are responsible for updating tenant information, billing information, room status, and payment records. Tenants can register rooms, make payments, submit maintenance requests, search for available rooms, and receive utility bills and notifications. In addition, the system integrates with Bank/E-Wallet services to process payment requests and confirmations.
+By implementing this system, boarding house operations become more organized, transparent, accurate, and convenient for all parties involved.
+II.2 Major Features 
+FE-01:
+ User authentication and role-based authorization for landlords, staff members, and tenants.
+FE-02:
+ Manage boarding houses, rooms, room types, and room availability.
+FE-03:
+ Create, update, renew, and terminate rental contracts.
+FE-04:
+ Manage tenant information and rental history.
+FE-05:
+ Generate and manage monthly utility bills including electricity, water, and service fees.
+FE-06:
+ Record and track rental payments and payment history.
+FE-07:
+ Submit, process, and monitor maintenance and repair requests.
+FE-08:
+ Send notifications and reminders for payments, contract expiration, and announcements.
+FE-09:
+ Search and filter available rooms based on price, location, and room status.
+FE-10:
+ Generate statistical reports related to occupancy rates, revenue, and maintenance activities.
+II.3 Context Diagram
+II.4 Nonfunctional requirements 
+[Provide the descriptions for 
+the
+ functions which have no UI (or not screens), i.e batch/cron job, service, API, etc.]
+#
+Feature
+System Function
+Description
+1
+Billing Management 
+Auto-generate Monthly Invoices 
+Automated batch job executed on the 1st of every month. The system aggregates room rent, electricity/water consumption metrics (input by Staff or IoT meters), and service fees to generate monthly invoices for each room. 
+2
+Contract Management 
+Check Contract Expiration 
+Background cron job executed daily at 00:00 to scan contracts expiring within the next 15-30 days and trigger expiration alerts to the Landlord. 
+3
+Payment Integration 
+Payment Gateway Webhook 
+An API service that listens for payment confirmation responses from Banks / E-wallets. Upon a successful transaction, the system automatically clears the debt and updates the invoice status to "Paid" without manual intervention from the Landlord. 
+4
+Notification System 
+Push Notification Service 
+A background service responsible for sending bulk notifications (via SMS, Email, or App push) to Tenants regarding periodic payments, rent dues, or announcements. 
+II.5 Functional requirements
+II.5
+.1 Actors
+[An actor is a person (or sometimes another software system or a hardware device) that interacts with the system to perform a use case. Following are some questions you might ask to help user representatives identify actors
+Who (or what) is notified when something occurs within the system?
+Who (or what) provides information or services to the system?
+Who (or what) helps the system respond to and complete a task?
+This part gives the description of system actors, you can follow the table form as below]
+#
+Actor
+Description
+1
+Landlord 
+The house owner or top-level administrator. Has full system privileges to configure room details, service rates, manage rental contracts, and view occupancy and revenue reports. 
+2
+Tenant 
+The room renter. Interacts with the system to search for available rooms, register for rentals, view monthly utility bills, make online payments, and submit maintenance requests. 
+3
+Staff 
+Management or maintenance personnel. Assists the Landlord by updating tenant information, recording utility metrics (Billing Information), and monitoring room statuses to perform repairs or cleaning tasks. 
+4
+Bank / E-Wallet 
+An external software system. Receives payment requests from the boarding house management system and returns transaction confirmation statuses. 
+II.5.2 Use Cases
+II.5.2 .1 Use Case Diagram(s)
+[Provide the UC diagram(s) to show the actor-UCs and UC-UC relationships like the sample below. You can have multiple UC diagrams for the system]
+II.5.2.2 Use case descriptions
+This part describes the use cases, you can follow the table form as below]
+ID
+Use Case
+Actors
+Use Case Description
+01
+Manage Room Information 
+Landlord 
+Allows adding, editing, deleting, or updating detailed information and service rates of the boarding rooms. 
+02
+Manage Rental Contracts 
+Landlord 
+Manages the entire lifecycle of a rental contract, from creation and renewal to termination. 
+03
+Generate Business Reports 
+Landlord
+Exports revenue, expense, and room occupancy reports based on a customizable timeframe. 
+04
+Submit Rental Registration 
+Tenant 
+Allows prospective tenants to send a deposit request or register to rent an available room. 
+05
+View Utility Bills 
+Tenant 
+Allows tenants to view detailed itemized invoices (rent, electricity, water) for the current month and historical data of previous months. 
+06
+Pay Rent Online 
+Tenant 
+Executes invoice payments by connecting to the integrated Bank / E-Wallet. 
+07
+Submit Maintenance Requests 
+Tenant 
+Sends notifications regarding damaged facilities (electricity, water, infrastructure) to the management team. 
+08
+Input Billing Information 
+Staff 
+Manages the manual data entry of monthly electricity and water consumption metrics for each room. 
+09
+Manage Room Status 
+Staff 
+Updates the real-time physical condition of the room (e.g., Vacant, Cleaning, Under Maintenance) to synchronize with the system. 
+10
+Process Payment Transaction 
+Bank / E-Wallet 
+Processes the financial transaction and returns the payment confirmation status (Success/Failure) to the system. 
+11
+Search Available Rooms 
+Tenant 
+Allows users (or prospective clients) to search, filter, and view vacant rooms based on criteria like price, size, or location. 
+12
+Manage Tenant Profiles 
+Landlord / Staff 
+Adds, updates, and stores personal information of tenants (e.g., National ID/CCCD, contact details, temporary residence registration profiles). 
+13
+Manage Security Deposits 
+Landlord 
+Tracks tenants' security deposits, executing refunds or deductions upon contract termination. 
+14
+Send System Notifications 
+Landlord 
+Drafts and dispatches bulk or personalized notifications (rules/regulations, payment reminders, security alerts) to tenants. 
+15
+View System Notifications 
+Tenant 
+Allows tenants to receive and view important announcements sent by the system management. 
+16
+Manage Staff Accounts 
+Landlord 
+Creates accounts, assigns permissions (such as utility recording or maintenance duties), and manages the staff directory. 
+17
+Update Maintenance Status 
+Staff 
+Receives maintenance requests from tenants, carries out the repairs, and updates the task status (In Progress, Completed) on the system. 
+18
+Manage Personal Profile 
+Tenant 
+Allows tenants to update their own contact details, change passwords, and manage logged-in devices. 
+19
+Configure System Settings 
+Landlord 
+Establishes core system configurations, such as adding bank accounts for receiving payments, creating standard contract templates, or setting up late payment fee rules. 
+20
+Terminate Rental Contracts 
+Landlord 
+Handles the check-out process: records final utility meter readings, calculates remaining balances, deducts property damage costs (if any), and closes the tenant's active file. 
+1 <<UseCaseCode_UC Name>>
+Functional Description Template
+UC ID and Name:
+Created By:
+Date Created:
+Primary Actor:
+Secondary Actors:
+Trigger:
+Description:
+Preconditions:
+Postconditions:
+Normal Flow:
+Alternative Flows:
+Exceptions:
+Priority:
+High (Medium, Low), Must Have (Should Have, Could Have),..
+Frequency of Use:
+Business Rules:
+Other Information:
+Assumptions:
+ 
+UC 17: Update Maintenance Status
+ 
+Functional Description Template
+UC ID and Name:
+UC 17: Update Maintenance Status
+Created By:
+dungda
+Date Created:
+03/06/2026
+Primary Actor:
+Staff
+Secondary Actors:
+Tenant (Receives notification), Landlord (Monitors)
+Trigger:
+Staff receives a maintenance request from a tenant or starts/completes a repair job.
+Description:
+Allows the Staff to handle and update the progress status (e.g., In Progress, Completed) of maintenance and repair requests submitted by tenants on the Boarding House Management System. (Maps to feature 
+FE-07
+).
+Preconditions:
+The Staff member is successfully logged into the system. The maintenance request from the Tenant already exists in the system.
+Postconditions:
+The maintenance task status is successfully updated in the database. The system automatically triggers a status update notification to the relevant Tenant.
+Normal Flow:
+1. Staff navigates to the "Maintenance Management" module.
+2. The system displays a list of active maintenance requests for the boarding house rooms.
+3. Staff selects the specific maintenance request to be processed.
+4. The system displays the detailed issue descriptions, attached images (if any), and request history.
+5. Staff updates the task status (e.g., changing from "Pending" to "In Progress" or "Completed").
+6.  Staff enters repair notes or any incurred material costs (if applicable) and clicks "Update".
+7.  The system updates the status in the database and displays a success message.
+8. The system sends an in-app notification/email to the corresponding Tenant.
+Alternative Flows:
+5a. Cancel Request:
+ If the reported issue is a duplicate or invalid, the Staff can change the status to "Cancelled" and input the reason.
+Exceptions:
+ 
+7a. Data Saving Failure:
+ Database connection is lost -> The system displays "Update failed, please try again later."
+Priority:
+ High / Must Have
+Frequency of Use:
+Frequent (Every time a technical issue occurs in a room).
+Business Rules:
+Only assigned Staff members or the Landlord have the authorization to change the maintenance status. A task marked as "Completed" cannot be reverted to "Pending".
+Other Information:
+Linked directly to the "Maintenance Request" data flow in the Context Diagram.
+Assumptions:
+The notification service is functional so tenants receive instant updates.
+ 
+ 
+ 
+ 
+UC 18: Manage Personal Profile
+Functional Description Template
+UC ID and Name:
+UC 18 - Manage Personal Profile
+Created By:
+dungda
+Date Created:
+03/06/2026
+Primary Actor:
+Tenant
+Secondary Actors:
+None.
+Trigger:
+Tenant wants to update contact information, change their password, or manage logged-in devices.
+Description:
+Allows tenants to update their own contact details, change account login passwords, and view/manage currently logged-in devices to ensure account security. (Maps to features 
+FE-01
+ and 
+FE-04
+).
+Preconditions:
+The Tenant is successfully logged into their system account.
+Postconditions:
+The Tenant's personal details or security settings are updated in the system.
+Normal Flow:
+1.
+       
+Tenant navigates to the "Personal Profile / Account Settings" section.
+2.
+       
+The system displays current profile information (Full Name, Phone Number, Email, Masked Password, Active Devices).
+3.
+       
+Tenant modifies editable fields (Phone Number, Email) or selects the "Change Password" option.
+4.
+       
+Tenant clicks the "Save Changes" button.
+5.
+       
+The system validates the format and integrity of the newly entered data.
+6.
+       
+The system updates the data in the database and displays an "Account updated successfully" alert.
+Alternative Flows:
+3a. Change Password:
+ Tenant inputs the current password, a new password, and confirms the new password -> The system verifies the old password -> Saves the new password and terminates other sessions if requested.
+Exceptions:
+ 
+5a. Duplicate Data:
+ The new Email or Phone Number matches an existing account in the system -> The system displays "Email/Phone number already exists."
+5b. Incorrect Old Password:
+ The system displays an error indicating the old password does not match.
+Priority:
+High / Must Have
+Frequency of Use:
+Low (Only when contact details change or a password reset is necessary).
+Business Rules:
+Tenants are not allowed to change their core legal information (Full Name and Citizen ID/Passport) once the contract is signed (requires direct support from Landlord/Staff).
+Other Information:
+None
+Assumptions:
+The Tenant remembers their current password to authenticate high-security changes.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+UC 19: Configure System Settings
+ 
+Functional Description Template
+UC ID and Name:
+UC 19 - Configure System Settings
+Created By:
+dungda
+Date Created:
+03/06/2026
+Primary Actor:
+Landlord
+Secondary Actors:
+None.
+Trigger:
+Landlord needs to set up default operational parameters for the boarding house management system.
+Description:
+Establishes core system configurations such as adding bank accounts for receiving rent payments, creating standard rental contract templates, and setting up late payment fee rules. (Supports features 
+FE-03
+, 
+FE-05
+, and 
+FE-06
+).
+Preconditions:
+The logged-in user must be the Landlord with full system administrative privileges.
+Postconditions:
+The new configuration rules and variables are saved and applied instantly to future operations and transactions.
+Normal Flow:
+1.
+       
+Landlord navigates to the "System Settings" panel.
+2.
+       
+The system presents tabs for configurations: [Bank Accounts], [Contract Templates], [Late Fee Rules].
+3.
+       
+Landlord selects a specific category to configure (e.g., adding a new bank account number, selecting bank name, and branch).
+4.
+       
+Landlord fills out configuration forms or defines the formula for overdue penalties.
+5.
+       
+Landlord clicks the "Save Configurations" button.
+6.
+       
+The system validates the inputs, records them into the system configuration tables, and displays a success notification.
+Alternative Flows:
+3a. Create Contract Template:
+ Landlord uploads a text document template (.docx) or utilizes the system's text editor to map dynamic variables (e.g., {Tenant_Name}, {Room_Price}) into a standardized template.
+Exceptions:
+5a. Invalid Number Format:
+ Landlord enters alphabetic characters in the late fee rate/amount input fields -> The system blocks execution and prompts for a valid numeric value.
+Priority:
+High / Must Have
+Frequency of Use:
+Very Low (Typically configured once during initial deployment or during major business policy shifts).
+Business Rules:
+The configured bank account details are dynamically pulled to generate payment QR codes sent to tenants in the "Payment Request" flow.
+Other Information:
+None
+Assumptions:
+The chosen banks are supported by the integrated Bank/E-Wallet payment gateway API.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+UC 20: Terminate Rental Contracts
+Functional Description Template
+UC ID and Name:
+UC 20 - Terminate Rental Contracts
+Created By:
+dungda
+Date Created:
+03/06/2026
+Primary Actor:
+Landlord
+Secondary Actors:
+Tenant, Staff (Assists with room inspection), Bank/E-Wallet (For online deposit refunds).
+Trigger:
+A rental contract reaches its expiration date or early termination is requested by either party.
+Description:
+Handles the checkout process by recording final utility meter readings (electricity and water), calculating remaining balances (credits/debts), deducting costs for property damage (if any), and officially closing the tenant's active file. (Maps directly to feature 
+FE-03
+).
+Preconditions:
+The Tenant's rental contract status is currently "Active".
+Postconditions:
+The contract status changes to "Terminated". The room status resets to "Available". The tenant's active file is closed.
+Normal Flow:
+1.
+       
+Landlord selects the targeted Tenant's active contract and clicks "Terminate Contract / Checkout".
+2.
+       
+The system loads the checkout settlement form.
+3.
+       
+Landlord inputs the final electricity and water meter readings. The system automatically computes utility costs based on configured rates.
+4.
+       
+Landlord inputs any property damage deduction costs with an itemized description.
+5.
+       
+The system computes the final financial summary: Refund/Collect Amount = [Security Deposit] - [Outstanding Rent] - [Accrued Utilities] - [Damage Fees].
+6.
+       
+Landlord reviews the final closing financial calculations and clicks "Confirm Termination".
+7.
+       
+The system sets the contract status to "Terminated", changes the room status to "Available", closes the tenant's active file, and outputs a liquidation report in PDF format sent to the Tenant.
+Alternative Flows:
+4a. No Property Damage:
+ Landlord leaves damage fee fields blank -> The system defaults the property damage cost to 0.
+Exceptions:
+3a. Illogical Meter Readings:
+ The input final utility meter reading is lower than the previous billing cycle's reading -> The system generates an error message and restricts settlement.
+Priority:
+High / Must Have
+Frequency of Use:
+Medium (Triggered whenever a tenant checks out of a room).
+Business Rules:
+Upon closing the tenant's active file, all automated permissions and credentials assigned to the Tenant for facility access or app features are revoked.
+Other Information:
+The final generated PDF acts as a binding mutual legal agreement for deposit clearance.
+Assumptions:
+Physical room inspection has been successfully completed by Staff/Landlord and verified with the Tenant.
+ 
+Functional Description Contents
+Use Case ID and Name
+Give each use case a unique integer sequence number identifier. State a concise name for the use case that indicates the value the use case would provide to some user. Begin with an action verb, followed by an object.
+Author and Date Created
+Enter the name of the person who initially wrote this use case and the date it was written.
+Primary and Secondary Actors
+An actor is a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks. Different actors often correspond to different user classes, or roles, identified from the customer community that will use the product. Name the primary actor that will be initiating this use case and any other secondary actors who will participate in completing execution of the use case.
+Trigger
+Identify the business event, system event, or user action that initiates the use case. This trigger alerts the system that it should begin testing the preconditions for the use case so it can judge whether to proceed with execution.
+Description
+Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case.
+Preconditions
+List any activities that must take place, or any conditions that must be true, before the use case can be started. The system must be able to test each precondition. Number each precondition. Example: PRE-1: User’s identity has been authenticated.
+Postconditions
+Describe the state of the system at the successful conclusion of the use case execution. Label each postcondition in the form POST-X, where X is a sequence number. Example: POST-1: Price of item in the database has been updated with the new value.
+Normal Flow
+Provide a description of the user actions and corresponding system responses that will take place during execution of the use case under normal, expected conditions. This dialog sequence will ultimately lead to accomplishing the goal stated in the use case name and description. Show a numbered list of actions performed by the actor, alternating with responses provided by the system. The normal flow is numbered “X.0”, where “X” is the Use Case ID.
+Alternative Flows
+Document other successful usage scenarios that can take place within this use case. State the alternative flow, and describe any differences in the sequence of steps that take place. Number each alternative flow in the form “X.Y”, where “X” is the Use Case ID and Y is a sequence number for the alternative flow. For example, “5.3” would indicate the third alternative flow for use case number 5. Indicate where each alternative flow would branch off from the normal flow, and if pertinent, where it would rejoin the normal flow.
+Exceptions
+Describe any anticipated error conditions that could occur during execution of the use case and how the system is to respond to those conditions. Number each alternative flow in the form “X.Y.EZ”, where “X” is the Use Case ID, Y indicates the normal (0) or alternative (>0) flow during which this exception could take place, “E” indicates an exception, and “Z” is a sequence number for the exceptions. For example “5.0.E2” would indicate the second exception for the normal flow for use case number 5. Indicate where in the normal (or an alternative) flow each exception could occur.
+Priority
+Indicate the relative priority of implementing the functionality required to allow this use case to be executed. Use the same priority scheme as that used for the functional requirements.
+Frequency of Use
+Estimate the number of times this use case will be performed per some appropriate unit of time. This gives an early indicator of throughput, concurrent usage loads, and transaction capacity.
+Business Rules
+List any business rules that influence this use case. Don’t include the business rule text here, just its identifier so the reader can find it in another repository when needed.
+Other Information
+Identify any additional requirements, such as quality attributes, for the use case that may need to be addressed during design or implementation. Also list any associated functional requirements that aren’t a direct part of the use case flows but which a developer needs to know about. Describe what should happen if the use case execution fails for some unanticipated or systemic reason (e.g., loss of network connectivity, timeout). If the use case results in a durable state change in a database or the outside world, state whether the change is rolled back, completed correctly, partially completed with a known state, or left in an undetermined state as a result of the exception.
+Assumptions
+List any assumptions that were made regarding this use case or how it might execute.
+b. Business Rules
+Provide the business rules those are applied only to the use case
+ID
+Business Rule
+Business Rule Description
+FR1
+Password Encoding
+User’s password must be encoded with MD5 hashing
+II.5.3 Activity diagram
+[This part describes the use cases, you can follow the table form as below]
+Sample:
+………
+III. Analysis models. 
+III.1. High-level class diagram (structural models) 
+III.2 Interaction diagrams
+[Interaction diagrams
+ are a type of UML diagram that illustrate how objects interact in a particular scenario of a use case. They focus on the flow of 
+messages
+ between 
+objects or components
+ over time.
+There are two main types:
+Sequence Diagram
+ – Emphasizes the time-ordering of messages
+Communication Diagram
+ – Emphasizes the structure and relationships between objects]
+III.2.1.Sequence Diagrams
+[Provide the sequence diagram(s) for the feature, see the sample below]
+III.2.2.
+ 
+Communication Diagrams
+[Provide the Communication diagram(s) for the feature, see the sample below]
+III.3 State diagrams (Behavioral models)
+[Provide the State diagram(s) for the feature, see the sample below]
+IV. Design specification
+IV.1 Integrated Communication Diagrams 
+Sample
+IV.2 System High-Level Design
+Sample
+IV.3 Component and Package Diagram
+IV.3.1 Component Diagram
+Sample
+IV.3.1 . Package Diagram
+[Provide the package diagram for each sub-system. The content of this section including the overall package diagram, the explanation, package and class naming conventions in each package. Please see the sample & description table format below (
+please note: package names don’t follow Java package naming convention yet
+)]
+Package descriptions
+No
+Package
+Description
+01
+omemberauthorityrm
+<Description of the package>
+02
+registration
+<Description of the package>
+03
+fedrpc
+<Description of the package>
+04
+ofed
+<Description of the package>
+05
+mongoDB
+<Description of the package>
+06
+fedtools
+<Description of the package>
+07
+…
+IV.4 Implementation Class diagram 
+[This part presents the class diagram for the relevant feature]
+IV.5 Database Design
+[Provide the tables relationship like example below – following MySQL database naming convention]
+V. Implementation 
+V.1 Map architecture to the structure of the project 
+[Provide: 
+Overview of the Chosen Architecture
+Briefly describe the architectural style (e.g., Layered, MVC, Service-Oriented Architecture)
+Explain 
+why it was selected
+ for this project (e.g., to meet non-functional requirements like maintainability, scalability, reusability)
+Mapping to Project Structure
+Present the 
+actual project folder/package structure
+Map each layer/component in the architecture to concrete project modules]
+V.2 Map Class Diagram and Interaction Diagram to Code
+[Demo the implementation of several features using design patterns]
+VI. Applying Alternative Architecture Patterns
+VI.1 Applying the ………….. (ex:
+ Service-Oriented Architecture (SOA))
+  architecture
+[Redesign part of the system architecture using 
+Service-Oriented Architecture (SOA)
+ to improve 
+reusability
+, 
+scalability
+, and 
+modularity
+.
+Students must provide:
+Problem Identification
+Briefly describe which non-functional requirement(s) are 
+not fully supported
+ by the current architecture (e.g., NF-05: Reusability)
+SOA-Based Solution
+Reorganize system components into independent services
+E.g., refactor FSOData into separate service modules
+Supporting Diagrams
+Deployment Diagram
+Updated Class Diagram
+Component Diagram showing separate services]
+VI.2 Applying Service Discovery Pattern in the service-oriented architecture 
+[Support dynamic service registration and discovery in 
+SOA or microservice-based architecture
+ for 
+horizontal scalability
+ and ease of expansion.
+ Students must provide:
+Problem & Requirement
+Explain the relevant non-functional requirement (e.g., NF-06: Scalability)
+Describe the need for service discovery in a growing system (e.g., multiple branches, independent modules)
+Service Discovery-Based Solution
+Integrate a 
+Service Discovery Pattern
+Mention possible technologies: 
+Consul
+, 
+Eureka
+, 
+Kubernetes DNS
+Supporting Diagrams
+Deployment Diagram (with multiple instances and registry)
+Updated Class/Component Diagram including a Discovery Service]
